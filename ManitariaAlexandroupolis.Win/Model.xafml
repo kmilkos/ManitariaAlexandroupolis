@@ -1,0 +1,337 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Application Title="Μανιτάρια">
+  <ActionDesign>
+    <Actions>
+      <Action Id="CreateDashboard" QuickAccess="True" />
+    </Actions>
+  </ActionDesign>
+  <BOModel>
+    <Class Name="DevExpress.Persistent.BaseImpl.Task" DefaultListViewMasterDetailMode="ListViewOnly" />
+    <Class Name="ManitariaAlexandroupolis.Module.Activity" ImageName="BO_Scheduler" DefaultListViewShowFindPanel="True" />
+    <Class Name="ManitariaAlexandroupolis.Module.Attend">
+      <OwnMembers>
+        <Member Name="EndTime" DisplayFormat="t" EditMask="t" />
+        <Member Name="StartTime" EditMaskType="DateTime" EditMask="t" DisplayFormat="t" />
+        <Member Name="TheDate" EditMask="d" DisplayFormat="{0:d}" />
+      </OwnMembers>
+    </Class>
+    <Class Name="ManitariaAlexandroupolis.Module.Category" Caption="Κατηγορία">
+      <OwnMembers>
+        <Member Name="Caption" Caption="Τίτλος" />
+        <Member Name="Taskv2s" Caption="Εργασίες" />
+      </OwnMembers>
+    </Class>
+    <Class Name="ManitariaAlexandroupolis.Module.Compost" Caption="Κομπόστα">
+      <OwnMembers>
+        <Member Name="CompostCode" DisplayFormat="" EditMask="Κ00.00.000.00" Caption="Κωδικός Κομπόστας" />
+        <Member Name="CompostYards" Caption="Κομποστάδικο" />
+        <Member Name="Productions" Caption="Παραγωγή" />
+      </OwnMembers>
+    </Class>
+    <Class Name="ManitariaAlexandroupolis.Module.CompostYard" Caption="Κομποστάδικο" />
+    <Class Name="ManitariaAlexandroupolis.Module.Customer" Caption="Πελάτης" />
+    <Class Name="ManitariaAlexandroupolis.Module.DailyRoomActions">
+      <OwnMembers>
+        <Member Name="RoomJob1" Caption="Room 1" />
+        <Member Name="RoomJob10" Caption="Room 10" />
+        <Member Name="RoomJob11" Caption="Room 11" />
+        <Member Name="RoomJob12" Caption="Room 12" />
+        <Member Name="RoomJob13" Caption="Room 13" />
+        <Member Name="RoomJob14" Caption="Room 14" />
+        <Member Name="RoomJob15" Caption="Room 15" />
+        <Member Name="RoomJob16" Caption="Room 16" />
+        <Member Name="RoomJob17" Caption="Room 17" />
+        <Member Name="RoomJob18" Caption="Room 18" />
+        <Member Name="RoomJob2" Caption="Room 2" />
+        <Member Name="RoomJob3" Caption="Room 3" />
+        <Member Name="RoomJob4" Caption="Room 4" />
+        <Member Name="RoomJob5" Caption="Room 5" />
+        <Member Name="RoomJob6" Caption="Room 6" />
+        <Member Name="RoomJob7" Caption="Room 7" />
+        <Member Name="RoomJob8" Caption="Room 8" />
+        <Member Name="RoomJob9" Caption="Room 9" />
+        <Member Name="TheDate" Caption="Date" />
+      </OwnMembers>
+    </Class>
+    <Class Name="ManitariaAlexandroupolis.Module.Employee">
+      <OwnMembers>
+        <Member Name="Caption" IsVisibleInAnalysis="False" />
+        <Member Name="Manager" DataSourceCriteria="[Positions][[Title] = 'Υπεύθυνος'] And [Oid] &lt;&gt; '@This.Oid'" />
+      </OwnMembers>
+    </Class>
+    <Class Name="ManitariaAlexandroupolis.Module.inventory" Caption="Απογραφές" />
+    <Class Name="ManitariaAlexandroupolis.Module.inventoryitem" Caption="Αντικείμενα Απογραφής" />
+    <Class Name="ManitariaAlexandroupolis.Module.Mushroom" Caption="Μανιτάρια" />
+    <Class Name="ManitariaAlexandroupolis.Module.Order" ImageName="Order" Caption="Παραγγελία" />
+    <Class Name="ManitariaAlexandroupolis.Module.OrderDetail" ImageName="OrderItem" Caption="Παραγγελία - Λεπτομέρειες" />
+    <Class Name="ManitariaAlexandroupolis.Module.Payment" ImageName="Money" Caption="Πληρωμή" />
+    <Class Name="ManitariaAlexandroupolis.Module.Production" Caption="Παραγωγή">
+      <OwnMembers>
+        <Member Name="Compost" Caption="Κομπόστα" />
+        <Member Name="CompostAction" Caption="Παραγωγή" />
+        <Member Name="CubicMeters" Caption="μ3" EditMask="" DisplayFormat="" />
+        <Member Name="Height" Caption="Ύψος" />
+        <Member Name="Notes" Caption="Σημειώσεις" Size="4096" RowCount="3" PropertyEditorType="DevExpress.ExpressApp.Win.Editors.RichTextPropertyEditor" />
+        <Member Name="ProductionAction" Caption="Ενέργεια" />
+        <Member Name="ProductionDate" Caption="Ημερομηνία" />
+        <Member Name="ProductionRoomNumber" Caption="Θάλαμος #" />
+        <Member Name="Quality" Caption="Ποιότητα" />
+        <Member Name="SeedPortobello" Caption="Σπόρος Portobello" />
+        <Member Name="SeedWhite" Caption="Σπόρος Λευκό" />
+        <Member Name="SquareMeterPortobello" Caption="μ2 Portobello" />
+        <Member Name="SquareMeterWhite" Caption="μ2 White" />
+        <Member Name="Truckster" Caption="Φορτηγό" />
+      </OwnMembers>
+    </Class>
+    <Class Name="ManitariaAlexandroupolis.Module.Taskv2" EditorTypeName="DevExpress.ExpressApp.Win.Editors.GridListEditor" ImageName="Reading">
+      <AppearanceRules>
+        <AppearanceRule Id="Waiting Tasks" BackColor="DeepSkyBlue" Enabled="True" Visibility="Show" Context="ListView" Criteria="[Status] = ##Enum#DevExpress.Persistent.Base.General.TaskStatus,WaitingForSomeoneElse#" TargetItems="*" FontColor="ControlLightLight" Index="1" IsNewNode="True" />
+        <AppearanceRule Id="Completed Tasks" BackColor="SpringGreen" Enabled="True" Visibility="Show" Context="ListView" Criteria="[Status] = 'Completed'" TargetItems="*" FontColor="ControlText" Index="2" IsNewNode="True" />
+        <AppearanceRule Id="Not Completed Tasks" BackColor="LightCoral" Enabled="True" Visibility="Show" Context="ListView" Criteria="[Status] = ##Enum#DevExpress.Persistent.Base.General.TaskStatus,NotStarted#" TargetItems="*" FontColor="ControlLightLight" Index="3" IsNewNode="True" />
+      </AppearanceRules>
+    </Class>
+    <Class Name="ManitariaAlexandroupolis.Module.TaskV3" EditorTypeName="DevExpress.ExpressApp.Win.Editors.GridListEditor">
+      <OwnMembers>
+        <Member Name="AllDay" ImageForFalse="" ImageForTrue="" CaptionForTrue="Yes" CaptionForFalse="No" />
+      </OwnMembers>
+    </Class>
+    <Class Name="ManitariaAlexandroupolis.Module.Watering" Caption="Πότισμα">
+      <OwnMembers>
+        <Member Name="Notes" Caption="Σημειώσεις" />
+        <Member Name="Quantity" Caption="Ποσότητα" />
+        <Member Name="Room" Caption="Θάλαμος" />
+        <Member Name="StartTime" Caption="Ώρα" EditMask="t" DisplayFormat="t" />
+        <Member Name="TheDate" Caption="Ημερομήνια" EditMaskType="DateTime" EditMask="d" />
+        <Member Name="WaterAmmount" Caption="lt/μ3" />
+      </OwnMembers>
+    </Class>
+  </BOModel>
+  <NavigationItems NavigationStyle="NavBar" GenerateRelatedViewVariantsGroup="True" DefaultLeafImageName="TemplatesV2Images.Action_Navigation_History_Forward" DefaultParentImageName="Action_Open" RootGroupsStyle="OutlookAnimated" RelatedViewVariantsGroupCaption="Καρτέλες" GenerateRelatedReportsGroup="True" GenerateRelatedAnalysisGroup="True" DefaultChildItemsDisplayStyle="List">
+    <Items>
+      <Item Id="Παραγωγή" Index="0" ChildItemsDisplayStyle="List">
+        <Items>
+          <Item Id="Production_ListView" ViewId="Production_ListView" Caption="Παραγωγή" ObjectKey="" Index="0" IsNewNode="True" />
+          <Item Id="Taskv2_ListView" ViewId="Taskv2_ListView" ObjectKey="" Index="1" IsNewNode="True" />
+          <Item Id="CompostYard_ListView_Copy" Caption="Κομποστάδικο" ObjectKey="" ViewId="CompostYard_ListView" Index="2" IsNewNode="True" />
+          <Item Id="Compost_ListView" Caption="Κομπόστες" />
+          <Item Id="CompostYard_ListView" Removed="True" />
+          <Item Id="Πότισμα" ViewId="Watering_ListView" IsNewNode="True" />
+        </Items>
+      </Item>
+      <Item Id="Λειτουργία" Index="1" ChildItemsDisplayStyle="List" IsNewNode="True">
+        <Items IsNewNode="True">
+          <Item Id="Activity_ListView" ViewId="Activity_ListView" ObjectKey="" Index="4" IsNewNode="True" />
+          <Item Id="charts" Caption="Γραφήματα Εργασιών" ViewId="Taskv2Gantt" Index="5" IsNewNode="True" />
+          <Item Id="Ημερολόγιο Λίστα" ViewId="IPersistentEvent_ListView" Caption="Ημερολόγιο" Index="5" IsNewNode="True" />
+          <Item Id="DailyRoomActions_ListView" Caption="Daily Room Log" IsNewNode="True" />
+          <Item Id="Κατηγορίες" ViewId="Category_ListView" Caption="Κατηγορίες" ToolTipIconType="Question" ToolTip="Κατηγορίες για χρήση σε διάφορα σημεία" ToolTipTitle="Εξήγηση" ImageName="ModelEditor_Action_Schema" IsNewNode="True" />
+        </Items>
+      </Item>
+      <Item Id="Προσωπικό" Index="1" ChildItemsDisplayStyle="List" IsNewNode="True">
+        <Items IsNewNode="True">
+          <Item Id="Employee_ListView" ViewId="Employee_ListView" ObjectKey="" Caption="Προσωπικό" Index="0" IsNewNode="True" />
+          <Item Id="Skill_ListView" ViewId="Skill_ListView" ObjectKey="" Caption="Ικανότητες Προσωπικού" Index="2" IsNewNode="True" />
+          <Item Id="Department_ListView" ViewId="Department_ListView" ObjectKey="" Index="3" IsNewNode="True" />
+          <Item Id="Position_ListView" ViewId="Position_ListView" ObjectKey="" Caption="Θέσεις Εργασίας" Index="4" IsNewNode="True" />
+        </Items>
+      </Item>
+      <Item Id="Default" ChildItemsDisplayStyle="List" Removed="True">
+        <Items>
+          <Item Id="Activity_ListView" Removed="True" />
+          <Item Id="calendar" ViewId="IEvent_ListView" Removed="True" />
+          <Item Id="Department_ListView" Removed="True" />
+          <Item Id="Employee_ListView" Removed="True" />
+          <Item Id="Position_ListView" Removed="True" />
+          <Item Id="Skill_ListView" Removed="True" />
+          <Item Id="Taskv2_ListView" Removed="True" />
+        </Items>
+      </Item>
+      <Item Id="KPI" ChildItemsDisplayStyle="List" Removed="True">
+        <Items>
+          <Item Id="KpiDefinition_ListView" Removed="True" />
+          <Item Id="KpiScorecard_ListView" Removed="True" />
+        </Items>
+      </Item>
+      <Item Id="Reports" ChildItemsDisplayStyle="List">
+        <Items>
+          <Item Id="inventory_ListView" Index="0" />
+          <Item Id="inventoryitem_ListView" Index="1" />
+          <Item Id="Analysis_ListView" Index="2" />
+          <Item Id="ReportsV2" Index="3" />
+          <Item Id="KpiDefinition_ListView" ViewId="KpiDefinition_ListView" ObjectKey="" IsNewNode="True" />
+          <Item Id="KpiScorecard_ListView" ViewId="KpiScorecard_ListView" ObjectKey="" IsNewNode="True" />
+        </Items>
+      </Item>
+      <Item Id="Άλλα" Removed="True">
+        <Items IsNewNode="True">
+          <Item Id="Production_ListView" Caption="Παραγωγή" Removed="True" />
+        </Items>
+      </Item>
+      <Item Id="Πωλήσεις" ChildItemsDisplayStyle="List" />
+    </Items>
+  </NavigationItems>
+  <Options Skin="Visual Studio 2013 Blue" UIType="MultipleWindowSDI" FormStyle="Ribbon" MdiDefaultNewWindowTarget="MdiChild" EnableHtmlFormatting="True">
+    <Attachments DefaultDirectory="Application.StartupPath &amp; &quot;\Temp&quot;" />
+    <Dashboards EnableCreation="True" />
+    <PrintingSettings PaperKind="A4" Landscape="True" />
+    <RibbonOptions RibbonControlStyle="Office2013" />
+  </Options>
+  <SchemaModules>
+    <SchemaModule Name="SchedulerModuleBase" Version="17.2.4.0" IsNewNode="True" />
+    <SchemaModule Name="SchedulerWindowsFormsModule" Version="17.2.4.0" IsNewNode="True" />
+    <SchemaModule Name="SystemModule" Version="17.2.4.0" IsNewNode="True" />
+    <SchemaModule Name="SystemWindowsFormsModule" Version="17.2.4.0" IsNewNode="True" />
+  </SchemaModules>
+  <Views>
+    <DetailView Id="Activity_DetailView" DefaultFocusedItem="Subject" />
+    <ListView Id="Activity_ListView" SchedulerViewType="Month" AllowEdit="True" NewItemRowPosition="None" ShowAutoFilterRow="True" ResourceClass="ManitariaAlexandroupolis.Module.Employee" PreviewColumnName="Description">
+      <Variants>
+        <Variant Id="@bf129c75-d9f3-449d-a469-cf3c26c05157" ViewID="Activity_ListView_Grid" IsNewNode="True" />
+      </Variants>
+    </ListView>
+    <ListView Id="Activity_ListView_Grid" ClassName="ManitariaAlexandroupolis.Module.Activity" ResourceClass="ManitariaAlexandroupolis.Module.Employee" SchedulerViewType="Month" AllowEdit="True" PreviewColumnName="Description" ShowAutoFilterRow="True" EditorTypeName="DevExpress.ExpressApp.Win.Editors.GridListEditor" Caption="Καθημερινότητα Λίστα" IsNewNode="True">
+      <Columns IsNewNode="True">
+        <ColumnInfo Id="Description" PropertyName="Description" Width="70" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="Oid" PropertyName="Oid" Width="70" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="AllDay" PropertyName="AllDay" Width="50" Index="0" IsNewNode="True" />
+        <ColumnInfo Id="Label" PropertyName="Label" Width="50" Index="1" IsNewNode="True" />
+        <ColumnInfo Id="Location" PropertyName="Location" Width="70" Index="2" IsNewNode="True" />
+        <ColumnInfo Id="StartOn" PropertyName="StartOn" Width="70" Index="3" IsNewNode="True" />
+        <ColumnInfo Id="EndOn" PropertyName="EndOn" Width="70" Index="4" IsNewNode="True" />
+        <ColumnInfo Id="Status" PropertyName="Status" Width="50" Index="5" IsNewNode="True" />
+        <ColumnInfo Id="Subject" PropertyName="Subject" Width="70" Index="6" IsNewNode="True" />
+        <ColumnInfo Id="RecurrenceInfoXml" PropertyName="RecurrenceInfoXml" Width="70" Index="7" IsNewNode="True" />
+      </Columns>
+    </ListView>
+    <ListView Id="Attend_ListView" IsFooterVisible="True">
+      <Columns>
+        <ColumnInfo Id="TotalHours">
+          <Summary>
+            <ColumnSummaryItem Id="TotalViewHours" SummaryType="Sum" IsNewNode="True" />
+          </Summary>
+        </ColumnInfo>
+      </Columns>
+    </ListView>
+    <ListView Id="IEvent_ListView" ResourceClass="ManitariaAlexandroupolis.Module.Employee" />
+    <ListView Id="IPersistentEvent_ListView" EditorTypeName="DevExpress.ExpressApp.Scheduler.Win.SchedulerListEditor" SchedulerViewType="Gantt" />
+    <DetailView Id="IRecurrentEvent_DetailView" ImageName="BO_Scheduler" />
+    <ListView Id="IRecurrentEvent_ListView" SchedulerViewType="Month" />
+    <DetailView Id="Production_DetailView">
+      <Items>
+        <PropertyEditor Id="Truckster" Caption="Φορτηγό" />
+      </Items>
+      <Layout>
+        <LayoutGroup Id="Main" RelativeSize="100">
+          <LayoutGroup Id="SimpleEditors" RelativeSize="100" Direction="Horizontal" Caption="SimpleEditors">
+            <LayoutGroup Id="Production" ShowCaption="True" Index="0" RelativeSize="37.222222222222221" Caption="Παραγωγή" IsNewNode="True" Removed="True">
+              <LayoutItem Id="ProductionDate" ViewItem="ProductionDate" Index="0" RelativeSize="4.49438202247191" IsNewNode="True" />
+              <LayoutItem Id="ProductionAction" ViewItem="ProductionAction" Index="1" RelativeSize="3.3707865168539324" IsNewNode="True" />
+              <LayoutItem Id="Compost" ViewItem="Compost" Index="2" RelativeSize="3.3707865168539324" IsNewNode="True" />
+              <LayoutItem Id="ProductionRoomNumber" ViewItem="ProductionRoomNumber" Index="3" RelativeSize="3.3707865168539324" IsNewNode="True" />
+              <LayoutItem Id="Notes" ViewItem="Notes" CaptionLocation="Top" CaptionHorizontalAlignment="Far" Index="4" RelativeSize="25.842696629213481" IsNewNode="True" />
+              <LayoutItem Id="Item1" Index="5" RelativeSize="59.550561797752806" IsNewNode="True" />
+            </LayoutGroup>
+            <LayoutGroup Id="Item2" ShowCaption="True" Caption="Πληροφορίες για την ενέργεια" CaptionLocation="Top" Index="1" RelativeSize="62.777777777777779" IsNewNode="True">
+              <LayoutItem Id="Truckster" ViewItem="Truckster" Index="0" RelativeSize="4.49438202247191" IsNewNode="True" />
+              <LayoutItem Id="Quality" ViewItem="Quality" Index="1" RelativeSize="3.3707865168539324" IsNewNode="True" />
+              <LayoutGroup Id="Auto09d4a2aa-7ab5-4745-8eed-414313fc8b28" ShowCaption="False" Caption="" Direction="Horizontal" Index="2" RelativeSize="3.3707865168539324" IsNewNode="True">
+                <LayoutItem Id="CompostSource" ViewItem="CompostSource" Index="0" RelativeSize="50" IsNewNode="True" />
+                <LayoutItem Id="CompostTarget" ViewItem="CompostTarget" Index="1" RelativeSize="50" IsNewNode="True" />
+              </LayoutGroup>
+              <LayoutGroup Id="Autoc118a193-5fe1-4362-8544-0652a04f0833" ShowCaption="False" Caption="Autoc118a193-5fe1-4362-8544-0652a04f0833(13)" Direction="Horizontal" Index="3" RelativeSize="88.764044943820224" IsNewNode="True">
+                <LayoutGroup Id="Auto7188115b-7147-4bf9-8e14-cf3bffd47c2f" ShowCaption="False" Caption="Auto7188115b-7147-4bf9-8e14-cf3bffd47c2f(14)" Index="0" RelativeSize="50" IsNewNode="True">
+                  <LayoutItem Id="SeedPortobello" ViewItem="SeedPortobello" Index="0" RelativeSize="4.7468354430379751" IsNewNode="True" />
+                  <LayoutItem Id="SeedWhite" ViewItem="SeedWhite" Index="1" RelativeSize="3.7974683544303796" IsNewNode="True" />
+                  <LayoutItem Id="Height" ViewItem="Height" Index="2" RelativeSize="91.455696202531641" IsNewNode="True" />
+                </LayoutGroup>
+                <LayoutGroup Id="Auto4be06e06-58b5-4244-a8a9-88d5728173a3" ShowCaption="False" Caption="Auto4be06e06-58b5-4244-a8a9-88d5728173a3(18)" Index="1" RelativeSize="50" IsNewNode="True">
+                  <LayoutItem Id="SquareMeterPortobello" ViewItem="SquareMeterPortobello" Index="0" RelativeSize="4.7468354430379751" IsNewNode="True" />
+                  <LayoutItem Id="SquareMeterWhite" ViewItem="SquareMeterWhite" Index="1" RelativeSize="3.7974683544303796" IsNewNode="True" />
+                  <LayoutItem Id="CubicMeters" ViewItem="CubicMeters" CaptionLocation="Left" Index="2" RelativeSize="91.455696202531641" IsNewNode="True" />
+                </LayoutGroup>
+              </LayoutGroup>
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <ListView Id="Taskv2_ListView" IsGroupPanelVisible="True" EditorTypeName="DevExpress.ExpressApp.Win.Editors.GridListEditor" IsFooterVisible="True" PreviewColumnName="">
+      <Columns>
+        <ColumnInfo Id="DueDate">
+          <Summary>
+            <ColumnSummaryItem Id="NextDueDate" SummaryType="Min" Index="2" IsNewNode="True" />
+          </Summary>
+        </ColumnInfo>
+        <ColumnInfo Id="Subject">
+          <Summary>
+            <ColumnSummaryItem Id="Count" SummaryType="Count" Index="1" IsNewNode="True" />
+          </Summary>
+        </ColumnInfo>
+      </Columns>
+      <ChartSettings Settings="﻿&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;&#xD;&#xA;&lt;ChartXmlSerializer version=&quot;17.1.6.0&quot;&gt;&#xD;&#xA;  &lt;Chart AppearanceNameSerializable=&quot;Default&quot; SelectionMode=&quot;None&quot; SeriesSelectionMode=&quot;Series&quot;&gt;&#xD;&#xA;    &lt;DataContainer DataMember=&quot;&quot; BoundSeriesSorting=&quot;None&quot;&gt;&#xD;&#xA;      &lt;SeriesTemplate /&gt;&#xD;&#xA;    &lt;/DataContainer&gt;&#xD;&#xA;  &lt;/Chart&gt;&#xD;&#xA;&lt;/ChartXmlSerializer&gt;" />
+      <Filters CurrentFilterId="ALL">
+        <Filter Id="ALL" Caption="All" ImageName="Star" IsNewNode="True" />
+        <Filter Id="TaskFilterStatusCompleted" Caption="Completed" ImageName="Action_Validation_Validate" Criteria="[Status] = ##Enum#DevExpress.Persistent.Base.General.TaskStatus,Completed#" IsNewNode="True" />
+        <Filter Id="TaskFilterStatusDeferred" Caption="Deferred" ImageName="Action_Deny_Set" Criteria="[Status] = ##Enum#DevExpress.Persistent.Base.General.TaskStatus,Deferred#" IsNewNode="True" />
+        <Filter Id="TaskFilterStatusInProgress" Caption="InProgress" ImageName="Action_Filter" Criteria="[Status] = ##Enum#DevExpress.Persistent.Base.General.TaskStatus,InProgress#" IsNewNode="True" />
+        <Filter Id="TaskFilterStatusNotStarted" Caption="Not Started" ImageName="Action_Close" Criteria="[Status] = ##Enum#DevExpress.Persistent.Base.General.TaskStatus,NotStarted#" IsNewNode="True" />
+        <Filter Id="TaskFilterStatusWaitingForSomeoneElse" Caption="Waiting For Someone Else" ImageName="BO_Rules" Criteria="[Status] = ##Enum#DevExpress.Persistent.Base.General.TaskStatus,WaitingForSomeoneElse#" IsNewNode="True" />
+      </Filters>
+    </ListView>
+    <ListView Id="Taskv2Gantt" Caption="Gantt View" ClassName="ManitariaAlexandroupolis.Module.Taskv2" EditorTypeName="DevExpress.ExpressApp.Chart.Win.ChartListEditor" IsNewNode="True">
+      <ChartSettings Settings="﻿&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;&#xD;&#xA;&lt;ChartXmlSerializer version=&quot;17.1.6.0&quot;&gt;&#xD;&#xA;  &lt;Chart AppearanceNameSerializable=&quot;Default&quot; SelectionMode=&quot;None&quot; SeriesSelectionMode=&quot;Series&quot;&gt;&#xD;&#xA;    &lt;DataContainer DataMember=&quot;&quot; BoundSeriesSorting=&quot;None&quot;&gt;&#xD;&#xA;      &lt;SeriesSerializable&gt;&#xD;&#xA;        &lt;Item1 Name=&quot;Planned&quot; ArgumentDataMember=&quot;Subject&quot; ColorDataMember=&quot;Status&quot; ToolTipHintDataMember=&quot;Description&quot; LabelsVisibility=&quot;True&quot;&gt;&#xD;&#xA;          &lt;View TypeNameSerializable=&quot;OverlappedGanttSeriesView&quot;&gt;&#xD;&#xA;            &lt;FillStyle FillMode=&quot;Gradient&quot; /&gt;&#xD;&#xA;          &lt;/View&gt;&#xD;&#xA;        &lt;/Item1&gt;&#xD;&#xA;        &lt;Item2 Name=&quot;Completed&quot; ArgumentDataMember=&quot;Subject&quot; ColorDataMember=&quot;Status&quot; ToolTipHintDataMember=&quot;Subject&quot; LabelsVisibility=&quot;True&quot;&gt;&#xD;&#xA;          &lt;View TypeNameSerializable=&quot;OverlappedGanttSeriesView&quot; /&gt;&#xD;&#xA;        &lt;/Item2&gt;&#xD;&#xA;      &lt;/SeriesSerializable&gt;&#xD;&#xA;      &lt;SeriesTemplate /&gt;&#xD;&#xA;    &lt;/DataContainer&gt;&#xD;&#xA;    &lt;Legend Visibility=&quot;False&quot; Name=&quot;Default Legend&quot; /&gt;&#xD;&#xA;    &lt;Diagram TypeNameSerializable=&quot;GanttDiagram&quot;&gt;&#xD;&#xA;      &lt;AxisX VisibleInPanesSerializable=&quot;-1&quot; Interlaced=&quot;true&quot; /&gt;&#xD;&#xA;      &lt;AxisY VisibleInPanesSerializable=&quot;-1&quot;&gt;&#xD;&#xA;        &lt;ConstantLines&gt;&#xD;&#xA;          &lt;Item1 AxisValueSerializable=&quot;23/11/2017&quot; ShowBehind=&quot;false&quot; Name=&quot;Progress&quot; /&gt;&#xD;&#xA;        &lt;/ConstantLines&gt;&#xD;&#xA;      &lt;/AxisY&gt;&#xD;&#xA;      &lt;DefaultPane BackColor=&quot;255, 255, 255&quot; /&gt;&#xD;&#xA;    &lt;/Diagram&gt;&#xD;&#xA;  &lt;/Chart&gt;&#xD;&#xA;&lt;/ChartXmlSerializer&gt;" IsNewNode="True" />
+    </ListView>
+    <ListView Id="TaskV3_CalendarView" ClassName="ManitariaAlexandroupolis.Module.TaskV3" EditorTypeName="DevExpress.ExpressApp.Scheduler.Win.SchedulerListEditor" Caption="Εργασίες Ημερολόγιο" AllowEdit="True" SchedulerViewType="Month" IsNewNode="True">
+      <Columns IsNewNode="True">
+        <ColumnInfo Id="Description" PropertyName="Description" Width="70" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="Oid" PropertyName="Oid" Width="70" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="Subject" PropertyName="Subject" Width="70" Index="0" IsNewNode="True" />
+        <ColumnInfo Id="StartOn" PropertyName="StartOn" Width="70" Index="1" IsNewNode="True" />
+        <ColumnInfo Id="EndOn" PropertyName="EndOn" Width="70" Index="2" IsNewNode="True" />
+        <ColumnInfo Id="AllDay" PropertyName="AllDay" Width="50" Index="3" IsNewNode="True" />
+        <ColumnInfo Id="Location" PropertyName="Location" Width="70" Index="4" IsNewNode="True" />
+        <ColumnInfo Id="Label" PropertyName="Label" Width="50" Index="5" IsNewNode="True" />
+        <ColumnInfo Id="Status" PropertyName="Status" Width="50" Index="6" IsNewNode="True" />
+        <ColumnInfo Id="Type" PropertyName="Type" Width="50" Index="7" IsNewNode="True" />
+        <ColumnInfo Id="ResourceId" PropertyName="ResourceId" Width="70" Index="8" IsNewNode="True" />
+        <ColumnInfo Id="AppointmentId" PropertyName="AppointmentId" Width="70" Index="9" IsNewNode="True" />
+        <ColumnInfo Id="PercentCompleted" PropertyName="PercentCompleted" Width="50" Index="10" IsNewNode="True" />
+        <ColumnInfo Id="DateCompleted" PropertyName="DateCompleted" Width="70" Index="11" IsNewNode="True" />
+        <ColumnInfo Id="Category" PropertyName="Category" Width="70" Index="12" IsNewNode="True" />
+        <ColumnInfo Id="Priority" PropertyName="Priority" Width="70" Index="13" IsNewNode="True" />
+      </Columns>
+      <Variants IsNewNode="True">
+        <Variant Id="@6ef15ac8-2b02-4997-ab21-53fdfd60cbff" ViewID="TaskV3_CalendarView" IsNewNode="True" />
+        <Variant Id="@b1d7c44a-a071-482c-a31e-f6f1a5eeb880" ViewID="TaskV3_ListView" Caption="Εργασίες Λίστα" IsNewNode="True" />
+      </Variants>
+    </ListView>
+    <ListView Id="TaskV3_ListView" EditorTypeName="DevExpress.ExpressApp.Win.Editors.GridListEditor">
+      <Variants>
+        <Variant Id="@2451c3bd-4477-40ad-9e58-724bf9610fea" ViewID="TaskV3_CalendarView" IsNewNode="True" />
+        <Variant Id="@c45ad45f-5e20-43a5-a3e0-c0ffde0e59ca" ViewID="TaskV3_ListView" Caption="Εργασίες Λίστα" IsNewNode="True" />
+      </Variants>
+    </ListView>
+    <DetailView Id="Watering_DetailView">
+      <Layout>
+        <LayoutGroup Id="Main" RelativeSize="100">
+          <LayoutGroup Id="SimpleEditors" RelativeSize="100">
+            <LayoutGroup Id="Watering" RelativeSize="100">
+              <LayoutGroup Id="Watering_col1" RelativeSize="50">
+                <LayoutItem Id="TheDate" RelativeSize="4.3478260869565215" />
+                <LayoutItem Id="Room" RelativeSize="3.2608695652173911" Index="1" />
+                <LayoutItem Id="Notes" ViewItem="Notes" Index="2" RelativeSize="92.3913043478261" IsNewNode="True" />
+                <LayoutItem Id="Quantity" Removed="True" />
+              </LayoutGroup>
+              <LayoutGroup Id="Watering_col2" RelativeSize="50">
+                <LayoutItem Id="Quantity" ViewItem="Quantity" Index="0" RelativeSize="4.3478260869565215" IsNewNode="True" />
+                <LayoutItem Id="WaterAmmount" Index="1" RelativeSize="3.2608695652173911" />
+                <LayoutItem Id="StartTime" Index="2" RelativeSize="92.3913043478261" />
+                <LayoutItem Id="Notes" Index="3" RelativeSize="89.1304347826087" Removed="True" />
+              </LayoutGroup>
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+  </Views>
+</Application>

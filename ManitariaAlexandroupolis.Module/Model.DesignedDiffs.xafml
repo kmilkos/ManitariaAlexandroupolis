@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Application>
+  <BOModel></BOModel>
+  <NavigationItems>
+    <Items>
+      <Item Id="Default">
+        <Items>
+          <Item Id="calendar" ViewId="IPersistentRecurrentEvent_ListView" Caption="Ημερολόγιο" IsNewNode="True" />
+          <Item Id="CustomerPayment_ListView" Removed="True" />
+        </Items>
+      </Item>
+      <Item Id="Πωλήσεις">
+        <Items>
+          <Item Id="CustomerPayment_ListView" ViewId="CustomerPayment_ListView" ObjectKey="" IsNewNode="True" />
+        </Items>
+      </Item>
+    </Items>
+  </NavigationItems>
+  <SchemaModules>
+    <SchemaModule Name="SystemModule" Version="14.1.3.0" IsNewNode="True" />
+  </SchemaModules>
+  <Views>
+    <DetailView Id="IRecurrentEvent_DetailView">
+      <Items>
+        <PropertyEditor Id="AppointmentId" Removed="True" />
+      </Items>
+    </DetailView>
+  </Views>
+</Application>
