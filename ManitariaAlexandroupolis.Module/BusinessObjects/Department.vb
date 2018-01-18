@@ -39,16 +39,16 @@ Public Class Department ' Specify more UI options using a declarative approach (
     End Property
 
     <DevExpress.Xpo.AssociationAttribute("Positions-Department")>
-    Public ReadOnly Property Positions As XPCollection(Of ManitariaAlexandroupolis.Module.Position)
+    Public ReadOnly Property Positions As XPCollection(Of Position)
         Get
-            Return GetCollection(Of ManitariaAlexandroupolis.Module.Position)("Positions")
+            Return GetCollection(Of Position)("Positions")
         End Get
     End Property
 
     <DevExpress.Xpo.AssociationAttribute("Employees-Department")>
-    Public ReadOnly Property Employees As XPCollection(Of ManitariaAlexandroupolis.Module.Employee)
+    Public ReadOnly Property Employees As XPCollection(Of Employee)
         Get
-            Return GetCollection(Of ManitariaAlexandroupolis.Module.Employee)("Employees")
+            Return GetCollection(Of Employee)("Employees")
         End Get
     End Property
 End Class

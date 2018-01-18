@@ -38,6 +38,17 @@ Public Class Category ' Specify more UI options using a declarative approach (ht
         End Set
     End Property
 
+    Private _department As Department
+    Property Department As Department
+        Get
+            Return _department
+        End Get
+        Set(ByVal Value As Department)
+            SetPropertyValue(Nameof(Department), _department, Value)
+        End Set
+    End Property
+    
+
     <DevExpress.Xpo.AssociationAttribute("Taskv2s-Category")>
     Public ReadOnly Property Taskv2s As XPCollection(Of ManitariaAlexandroupolis.Module.Taskv2)
         Get

@@ -278,6 +278,7 @@
     <Compile Include="BusinessObjects\DailyRoomActions.vb" />
     <Compile Include="BusinessObjects\Department.vb" />
     <Compile Include="BusinessObjects\Employee.vb" />
+    <Compile Include="BusinessObjects\FarmAction.vb" />
     <Compile Include="BusinessObjects\inventory.vb" />
     <Compile Include="BusinessObjects\inventoryitem.vb" />
     <Compile Include="BusinessObjects\inventorylistitem.vb" />
