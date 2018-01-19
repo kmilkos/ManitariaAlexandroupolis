@@ -24,7 +24,7 @@ Imports DevExpress.Persistent.Base.General
 <DefaultClassOptions()>
 Public Class TaskV3
     Inherits BaseObject
-    Implements IComparable, IEvent, ITask
+    Implements IComparable, IEvent
 
     Private _priority As PriorityEnum
 
@@ -40,7 +40,7 @@ Public Class TaskV3
     End Sub
 
 #Region "IEvent"
-    Public Property Subject As String Implements IEvent.Subject, ITask.Subject
+    Public Property Subject As String Implements IEvent.Subject
         Get
             Return GetPropertyValue("Subject")
         End Get
@@ -50,7 +50,7 @@ Public Class TaskV3
     End Property
 
     <Size(SizeAttribute.Unlimited)>
-    Public Property Description As String Implements IEvent.Description, ITask.Description
+    Public Property Description As String Implements IEvent.Description
         Get
             Return GetPropertyValue("Description")
         End Get
@@ -59,7 +59,7 @@ Public Class TaskV3
         End Set
     End Property
 
-    Public Property StartOn As Date Implements IEvent.StartOn, ITask.StartDate
+    Public Property StartOn As Date Implements IEvent.StartOn
         Get
             Return GetPropertyValue("StartOn")
         End Get
@@ -68,7 +68,7 @@ Public Class TaskV3
         End Set
     End Property
 
-    Public Property EndOn As Date Implements IEvent.EndOn, ITask.DueDate
+    Public Property EndOn As Date Implements IEvent.EndOn
         Get
             Return GetPropertyValue("EndOn")
         End Get
@@ -139,28 +139,10 @@ Public Class TaskV3
 #End Region
 
 #Region "ITask"
-    Public Property PercentCompleted As Integer Implements ITask.PercentCompleted
-        Get
-            Return GetPropertyValue("PercentCompleted")
-        End Get
-        Set(value As Integer)
-            SetPropertyValue("PercentCompleted", value)
-        End Set
-    End Property
-
-    Public ReadOnly Property DateCompleted As Date Implements ITask.DateCompleted
+    Public ReadOnly Property DateCompleted As Date
         Get
             Return GetPropertyValue("DateCompleted")
         End Get
-    End Property
-
-    Private Property TaskStatus As TaskStatus Implements ITask.Status
-        Get
-            Return GetPropertyValue("TaskStatus")
-        End Get
-        Set(value As TaskStatus)
-            SetPropertyValue("TaskStatus", value)
-        End Set
     End Property
 #End Region
 
@@ -174,7 +156,8 @@ Public Class TaskV3
         EndOn = EndOn + TimeSpan.FromDays(1)
     End Sub
 
-    Public Sub MarkCompleted() Implements ITask.MarkCompleted
+    <Action(Caption:="Mark Completed", ImageName:="State_Task_Completed")>
+    Public Sub MarkCompleted()
         SetPropertyValue("TaskStatus", TaskStatus.Completed)
     End Sub
 #End Region

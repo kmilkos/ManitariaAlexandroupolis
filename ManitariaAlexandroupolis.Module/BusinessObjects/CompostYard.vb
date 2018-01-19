@@ -54,6 +54,16 @@ Public Class CompostYard ' Specify more UI options using a declarative approach 
         End Set
     End Property
 
+    Private _farmAction As FarmAction
+    Property FarmAction As FarmAction
+        Get
+            Return _farmAction
+        End Get
+        Set(ByVal Value As FarmAction)
+            SetPropertyValue(NameOf(FarmAction), _farmAction, Value)
+        End Set
+    End Property
+
     Private _compostAction As CompostActionEnum
     Public Property CompostAction As CompostActionEnum
         Get

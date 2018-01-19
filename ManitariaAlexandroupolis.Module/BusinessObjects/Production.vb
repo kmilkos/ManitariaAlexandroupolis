@@ -49,6 +49,17 @@ Public Class Production ' Specify more UI options using a declarative approach (
         End Set
     End Property
 
+    Private _farmAction As FarmAction
+    Property FarmAction As FarmAction
+        Get
+            Return _farmAction
+        End Get
+        Set(ByVal Value As FarmAction)
+            SetPropertyValue(Nameof(FarmAction), _farmAction, Value)
+        End Set
+    End Property
+    
+
     Public Property ProductionDate As DateTime
         Get
             Return _productionDate
