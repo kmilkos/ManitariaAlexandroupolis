@@ -113,26 +113,29 @@
           <Item Id="Production_ListView" ViewId="Production_ListView" Caption="Παραγωγή" ObjectKey="" Index="0" IsNewNode="True" />
           <Item Id="Taskv2_ListView" ViewId="Taskv2_ListView" ObjectKey="" Index="1" IsNewNode="True" />
           <Item Id="CompostYard_ListView_Copy" Caption="Κομποστάδικο" ObjectKey="" ViewId="CompostYard_ListView" Index="2" IsNewNode="True" />
+          <Item Id="Attend_ListView" ViewId="Attend_ListView" ObjectKey="" IsNewNode="True" />
           <Item Id="Compost_ListView" Caption="Κομπόστες" />
           <Item Id="CompostYard_ListView" Removed="True" />
+          <Item Id="FarmAction_ListView" Removed="True" />
+          <Item Id="TaskV3_ListView" ViewId="TaskV3_ListView" ObjectKey="" IsNewNode="True" />
           <Item Id="Πότισμα" ViewId="Watering_ListView" IsNewNode="True" />
         </Items>
       </Item>
       <Item Id="Λειτουργία" Index="1" ChildItemsDisplayStyle="List" IsNewNode="True">
         <Items IsNewNode="True">
-          <Item Id="Activity_ListView" ViewId="Activity_ListView" ObjectKey="" Index="4" IsNewNode="True" />
-          <Item Id="charts" Caption="Γραφήματα Εργασιών" ViewId="Taskv2Gantt" Index="5" IsNewNode="True" />
-          <Item Id="Ημερολόγιο Λίστα" ViewId="IPersistentEvent_ListView" Caption="Ημερολόγιο" Index="5" IsNewNode="True" />
+          <Item Id="Attend_ListView" Removed="True" />
           <Item Id="DailyRoomActions_ListView" Caption="Daily Room Log" IsNewNode="True" />
+          <Item Id="FarmAction_ListView" ViewId="FarmAction_ListView" ObjectKey="" IsNewNode="True" />
+          <Item Id="TaskV3_ListView" Removed="True" />
           <Item Id="Κατηγορίες" ViewId="Category_ListView" Caption="Κατηγορίες" ToolTipIconType="Question" ToolTip="Κατηγορίες για χρήση σε διάφορα σημεία" ToolTipTitle="Εξήγηση" ImageName="ModelEditor_Action_Schema" IsNewNode="True" />
         </Items>
       </Item>
       <Item Id="Προσωπικό" Index="1" ChildItemsDisplayStyle="List" IsNewNode="True">
         <Items IsNewNode="True">
-          <Item Id="Employee_ListView" ViewId="Employee_ListView" ObjectKey="" Caption="Προσωπικό" Index="0" IsNewNode="True" />
+          <Item Id="Department_ListView" ViewId="Department_ListView" ObjectKey="" Index="0" IsNewNode="True" />
+          <Item Id="Position_ListView" ViewId="Position_ListView" ObjectKey="" Caption="Θέσεις Εργασίας" Index="1" IsNewNode="True" />
           <Item Id="Skill_ListView" ViewId="Skill_ListView" ObjectKey="" Caption="Ικανότητες Προσωπικού" Index="2" IsNewNode="True" />
-          <Item Id="Department_ListView" ViewId="Department_ListView" ObjectKey="" Index="3" IsNewNode="True" />
-          <Item Id="Position_ListView" ViewId="Position_ListView" ObjectKey="" Caption="Θέσεις Εργασίας" Index="4" IsNewNode="True" />
+          <Item Id="Employee_ListView" ViewId="Employee_ListView" ObjectKey="" Caption="Προσωπικό" Index="3" IsNewNode="True" />
         </Items>
       </Item>
       <Item Id="Default" ChildItemsDisplayStyle="List" Removed="True">
@@ -295,7 +298,6 @@
         <ColumnInfo Id="Type" PropertyName="Type" Width="50" Index="7" IsNewNode="True" />
         <ColumnInfo Id="ResourceId" PropertyName="ResourceId" Width="70" Index="8" IsNewNode="True" />
         <ColumnInfo Id="AppointmentId" PropertyName="AppointmentId" Width="70" Index="9" IsNewNode="True" />
-        <ColumnInfo Id="PercentCompleted" PropertyName="PercentCompleted" Width="50" Index="10" IsNewNode="True" />
         <ColumnInfo Id="DateCompleted" PropertyName="DateCompleted" Width="70" Index="11" IsNewNode="True" />
         <ColumnInfo Id="Category" PropertyName="Category" Width="70" Index="12" IsNewNode="True" />
         <ColumnInfo Id="Priority" PropertyName="Priority" Width="70" Index="13" IsNewNode="True" />

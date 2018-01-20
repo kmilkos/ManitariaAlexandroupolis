@@ -63,22 +63,10 @@ Public Class Category ' Specify more UI options using a declarative approach (ht
         End Get
     End Property
 
-    'Private _PersistentProperty As String
-    '<XafDisplayName("My display name"), ToolTip("My hint message")> _
-    '<ModelDefault("EditMask", "(000)-00"), Index(0), VisibleInListView(False)> _
-    '<Persistent("DatabaseColumnName"), RuleRequiredField(DefaultContexts.Save)> _
-    'Public Property PersistentProperty() As String
-    '    Get
-    '        Return _PersistentProperty
-    '    End Get
-    '    Set(ByVal value As String)
-    '        SetPropertyValue("PersistentProperty", _PersistentProperty, value)
-    '    End Set
-    'End Property
-
-    '<Action(Caption:="My UI Action", ConfirmationMessage:="Are you sure?", ImageName:="Attention", AutoCommit:=True)> _
-    'Public Sub ActionMethod()
-    '    ' Trigger a custom business logic for the current record in the UI (https://documentation.devexpress.com/eXpressAppFramework/CustomDocument112619.aspx).
-    '    Me.PersistentProperty = "Paid"
-    'End Sub
+    <Association("Category-DailyLogs")>
+    Public ReadOnly Property DailyLogs() As XPCollection(Of DailyLog)
+        Get
+            Return GetCollection(Of DailyLog)(NameOf(DailyLogs))
+        End Get
+    End Property
 End Class

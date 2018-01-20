@@ -269,12 +269,12 @@
     <Import Include="System.Diagnostics" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BusinessObjects\Activity.vb" />
     <Compile Include="BusinessObjects\Attend.vb" />
     <Compile Include="BusinessObjects\Category.vb" />
     <Compile Include="BusinessObjects\Compost.vb" />
     <Compile Include="BusinessObjects\CompostYard.vb" />
     <Compile Include="BusinessObjects\Customer.vb" />
+    <Compile Include="BusinessObjects\DailyLog.vb" />
     <Compile Include="BusinessObjects\DailyRoomActions.vb" />
     <Compile Include="BusinessObjects\Department.vb" />
     <Compile Include="BusinessObjects\Employee.vb" />

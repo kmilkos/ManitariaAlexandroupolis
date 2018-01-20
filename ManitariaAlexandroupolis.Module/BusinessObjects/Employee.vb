@@ -115,12 +115,13 @@ Public Class Employee ' Specify more UI options using a declarative approach (ht
     End Property
 
 
-    <Association("Activity-Employees", UseAssociationNameAsIntermediateTableName:=True)>
-    Public ReadOnly Property Activities() As XPCollection(Of Activity)
+    <Association("Employee-DailyLogs")>
+    Public ReadOnly Property DailyLogs() As XPCollection(Of DailyLog)
         Get
-            Return GetCollection(Of Activity)("Activities")
+            Return GetCollection(Of DailyLog)(NameOf(DailyLogs))
         End Get
     End Property
+
 #End Region
 
 #Region "IResource Members"

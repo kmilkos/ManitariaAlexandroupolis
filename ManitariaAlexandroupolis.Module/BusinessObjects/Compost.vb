@@ -33,6 +33,7 @@ Public Class Compost ' Specify more UI options using a declarative approach (htt
     End Sub
 
     Private _compostcode As String
+    <XafDisplayName("Κωδικός Κομπόστας")>
     Public Property CompostCode As String
         Set(value As String)
             SetPropertyValue("CompostCode", _compostcode, value)
@@ -43,17 +44,29 @@ Public Class Compost ' Specify more UI options using a declarative approach (htt
     End Property
 
     Private _theDate As DateTime
+    <XafDisplayName("Ημερομηνία")>
     Property TheDate As DateTime
         Get
             Return _theDate
         End Get
         Set(ByVal Value As DateTime)
-            SetPropertyValue(Nameof(TheDate), _theDate, Value)
+            SetPropertyValue(NameOf(TheDate), _theDate, Value)
         End Set
     End Property
-    
+
+    Private _isCompostEmptied As Boolean
+    <XafDisplayName("Άδειασε?")>
+    Property IsCompostEmptied As Boolean
+        Get
+            Return _isCompostEmptied
+        End Get
+        Set(ByVal Value As Boolean)
+            SetPropertyValue(NameOf(IsCompostEmptied), _isCompostEmptied, Value)
+        End Set
+    End Property
 
     <AssociationAttribute("Compost-CompostYards")>
+    <XafDisplayName("Εργασίες Κομποστάδικου")>
     Public ReadOnly Property CompostYards() As XPCollection(Of CompostYard)
         Get
             Return GetCollection(Of CompostYard)("CompostYards")
@@ -61,6 +74,7 @@ Public Class Compost ' Specify more UI options using a declarative approach (htt
     End Property
 
     <AssociationAttribute("Compost-Productions")>
+    <XafDisplayName("Εργασίες Παραγωγής")>
     Public ReadOnly Property Productions() As XPCollection(Of Production)
         Get
             Return GetCollection(Of Production)("Productions")
@@ -68,6 +82,7 @@ Public Class Compost ' Specify more UI options using a declarative approach (htt
     End Property
 
     <AssociationAttribute("Compost-Waterings")>
+    <XafDisplayName("Ποτίσματα")>
     Public ReadOnly Property Waterings() As XPCollection(Of Watering)
         Get
             Return GetCollection(Of Watering)("Waterings")

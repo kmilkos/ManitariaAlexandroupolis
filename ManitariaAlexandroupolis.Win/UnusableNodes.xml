@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Application>
+  <Views Id="Views">
+    <ListView Id="TaskV3_CalendarView">
+      <Columns Id="Columns">
+        <ColumnInfo Id="PercentCompleted" PropertyName="PercentCompleted" Width="50" Index="10" />
+      </Columns>
+    </ListView>
+  </Views>
+</Application>
