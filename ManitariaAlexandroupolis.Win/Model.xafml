@@ -7,7 +7,6 @@
   </ActionDesign>
   <BOModel>
     <Class Name="DevExpress.Persistent.BaseImpl.Task" DefaultListViewMasterDetailMode="ListViewOnly" />
-    <Class Name="ManitariaAlexandroupolis.Module.Activity" ImageName="BO_Scheduler" DefaultListViewShowFindPanel="True" />
     <Class Name="ManitariaAlexandroupolis.Module.Attend">
       <OwnMembers>
         <Member Name="EndTime" DisplayFormat="t" EditMask="t" />
@@ -30,6 +29,7 @@
     </Class>
     <Class Name="ManitariaAlexandroupolis.Module.CompostYard" Caption="Κομποστάδικο" />
     <Class Name="ManitariaAlexandroupolis.Module.Customer" Caption="Πελάτης" />
+    <Class Name="ManitariaAlexandroupolis.Module.DailyLog" EditorTypeName="DevExpress.ExpressApp.Win.Editors.GridListEditor" />
     <Class Name="ManitariaAlexandroupolis.Module.DailyRoomActions">
       <OwnMembers>
         <Member Name="RoomJob1" Caption="Room 1" />
@@ -55,7 +55,6 @@
     </Class>
     <Class Name="ManitariaAlexandroupolis.Module.Employee">
       <OwnMembers>
-        <Member Name="Caption" IsVisibleInAnalysis="False" />
         <Member Name="Manager" DataSourceCriteria="[Positions][[Title] = 'Υπεύθυνος'] And [Oid] &lt;&gt; '@This.Oid'" />
       </OwnMembers>
     </Class>
@@ -73,7 +72,6 @@
         <Member Name="Height" Caption="Ύψος" />
         <Member Name="Notes" Caption="Σημειώσεις" Size="4096" RowCount="3" PropertyEditorType="DevExpress.ExpressApp.Win.Editors.RichTextPropertyEditor" />
         <Member Name="ProductionAction" Caption="Ενέργεια" />
-        <Member Name="ProductionDate" Caption="Ημερομηνία" />
         <Member Name="ProductionRoomNumber" Caption="Θάλαμος #" />
         <Member Name="Quality" Caption="Ποιότητα" />
         <Member Name="SeedPortobello" Caption="Σπόρος Portobello" />
@@ -106,7 +104,7 @@
       </OwnMembers>
     </Class>
   </BOModel>
-  <NavigationItems NavigationStyle="NavBar" GenerateRelatedViewVariantsGroup="True" DefaultLeafImageName="TemplatesV2Images.Action_Navigation_History_Forward" DefaultParentImageName="Action_Open" RootGroupsStyle="OutlookAnimated" RelatedViewVariantsGroupCaption="Καρτέλες" GenerateRelatedReportsGroup="True" GenerateRelatedAnalysisGroup="True" DefaultChildItemsDisplayStyle="List">
+  <NavigationItems NavigationStyle="NavBar" GenerateRelatedViewVariantsGroup="True" DefaultLeafImageName="TemplatesV2Images.Action_Navigation_History_Forward" DefaultParentImageName="Action_Open" RootGroupsStyle="OutlookAnimated" RelatedViewVariantsGroupCaption="Καρτέλες" GenerateRelatedReportsGroup="True" GenerateRelatedAnalysisGroup="True" DefaultChildItemsDisplayStyle="LargeIcons">
     <Items>
       <Item Id="Παραγωγή" Index="0" ChildItemsDisplayStyle="List">
         <Items>
@@ -173,7 +171,7 @@
       <Item Id="Πωλήσεις" ChildItemsDisplayStyle="List" />
     </Items>
   </NavigationItems>
-  <Options Skin="Visual Studio 2013 Blue" UIType="MultipleWindowSDI" FormStyle="Ribbon" MdiDefaultNewWindowTarget="MdiChild" EnableHtmlFormatting="True">
+  <Options Skin="Office 2016 Colorful" UIType="MultipleWindowSDI" FormStyle="Ribbon" MdiDefaultNewWindowTarget="Default" EnableHtmlFormatting="True">
     <Attachments DefaultDirectory="Application.StartupPath &amp; &quot;\Temp&quot;" />
     <Dashboards EnableCreation="True" />
     <PrintingSettings PaperKind="A4" Landscape="True" />
@@ -186,26 +184,6 @@
     <SchemaModule Name="SystemWindowsFormsModule" Version="17.2.4.0" IsNewNode="True" />
   </SchemaModules>
   <Views>
-    <DetailView Id="Activity_DetailView" DefaultFocusedItem="Subject" />
-    <ListView Id="Activity_ListView" SchedulerViewType="Month" AllowEdit="True" NewItemRowPosition="None" ShowAutoFilterRow="True" ResourceClass="ManitariaAlexandroupolis.Module.Employee" PreviewColumnName="Description">
-      <Variants>
-        <Variant Id="@bf129c75-d9f3-449d-a469-cf3c26c05157" ViewID="Activity_ListView_Grid" IsNewNode="True" />
-      </Variants>
-    </ListView>
-    <ListView Id="Activity_ListView_Grid" ClassName="ManitariaAlexandroupolis.Module.Activity" ResourceClass="ManitariaAlexandroupolis.Module.Employee" SchedulerViewType="Month" AllowEdit="True" PreviewColumnName="Description" ShowAutoFilterRow="True" EditorTypeName="DevExpress.ExpressApp.Win.Editors.GridListEditor" Caption="Καθημερινότητα Λίστα" IsNewNode="True">
-      <Columns IsNewNode="True">
-        <ColumnInfo Id="Description" PropertyName="Description" Width="70" Index="-1" IsNewNode="True" />
-        <ColumnInfo Id="Oid" PropertyName="Oid" Width="70" Index="-1" IsNewNode="True" />
-        <ColumnInfo Id="AllDay" PropertyName="AllDay" Width="50" Index="0" IsNewNode="True" />
-        <ColumnInfo Id="Label" PropertyName="Label" Width="50" Index="1" IsNewNode="True" />
-        <ColumnInfo Id="Location" PropertyName="Location" Width="70" Index="2" IsNewNode="True" />
-        <ColumnInfo Id="StartOn" PropertyName="StartOn" Width="70" Index="3" IsNewNode="True" />
-        <ColumnInfo Id="EndOn" PropertyName="EndOn" Width="70" Index="4" IsNewNode="True" />
-        <ColumnInfo Id="Status" PropertyName="Status" Width="50" Index="5" IsNewNode="True" />
-        <ColumnInfo Id="Subject" PropertyName="Subject" Width="70" Index="6" IsNewNode="True" />
-        <ColumnInfo Id="RecurrenceInfoXml" PropertyName="RecurrenceInfoXml" Width="70" Index="7" IsNewNode="True" />
-      </Columns>
-    </ListView>
     <ListView Id="Attend_ListView" IsFooterVisible="True">
       <Columns>
         <ColumnInfo Id="TotalHours">
@@ -215,10 +193,77 @@
         </ColumnInfo>
       </Columns>
     </ListView>
-    <ListView Id="IEvent_ListView" ResourceClass="ManitariaAlexandroupolis.Module.Employee" />
-    <ListView Id="IPersistentEvent_ListView" EditorTypeName="DevExpress.ExpressApp.Scheduler.Win.SchedulerListEditor" SchedulerViewType="Gantt" />
-    <DetailView Id="IRecurrentEvent_DetailView" ImageName="BO_Scheduler" />
-    <ListView Id="IRecurrentEvent_ListView" SchedulerViewType="Month" />
+    <ListView Id="DailyLog_CalendarView" ClassName="ManitariaAlexandroupolis.Module.DailyLog" Caption="Ημερήσιο Αρχείο" EditorTypeName="DevExpress.ExpressApp.Scheduler.Win.SchedulerListEditor" SchedulerViewType="Month" ResourceClass="ManitariaAlexandroupolis.Module.Employee" IsNewNode="True">
+      <Columns IsNewNode="True">
+        <ColumnInfo Id="AllDay" PropertyName="AllDay" Width="50" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="AppointmentId" PropertyName="AppointmentId" Width="70" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="EndOn" PropertyName="EndOn" Width="70" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="Label" PropertyName="Label" Width="50" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="Location" PropertyName="Location" Width="70" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="Notes" PropertyName="Notes" Width="70" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="Oid" PropertyName="Oid" Width="70" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="ResourceId" PropertyName="ResourceId" Width="70" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="StartOn" PropertyName="StartOn" Width="70" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="Subject" PropertyName="Subject" Width="70" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="Type" PropertyName="Type" Width="50" Index="-1" IsNewNode="True" />
+        <ColumnInfo Id="TheDate" PropertyName="TheDate" Width="76" Index="0" IsNewNode="True" />
+        <ColumnInfo Id="Operation" PropertyName="Operation" Width="69" Index="1" IsNewNode="True" />
+      </Columns>
+      <Variants Current="Λίστα" IsNewNode="True">
+        <Variant Id="DailyLogCalendarToCalendar" Caption="Ημερολόγιο" ViewID="DailyLog_CalendarView" IsNewNode="True" />
+        <Variant Id="DailyLogCalendarToList" Caption="Λίστα" ViewID="DailyLog_ListView" IsNewNode="True" />
+      </Variants>
+    </ListView>
+    <DetailView Id="DailyLog_DetailView">
+      <Layout>
+        <LayoutGroup Id="Main" RelativeSize="100">
+          <LayoutGroup Id="SimpleEditors" RelativeSize="5.0397877984084882">
+            <LayoutGroup Id="DailyLog" RelativeSize="100" Caption="DailyLog" Direction="Horizontal">
+              <LayoutItem Id="TheDate" ViewItem="TheDate" Index="0" RelativeSize="26.936026936026938" IsNewNode="True" Removed="True" />
+              <LayoutItem Id="Operation" ViewItem="Operation" Index="1" RelativeSize="37.037037037037038" IsNewNode="True" Removed="True" />
+              <LayoutItem Id="Location" RelativeSize="36.026936026936028" Index="2" />
+            </LayoutGroup>
+          </LayoutGroup>
+          <LayoutGroup Id="Auto2f7084c9-4f4a-47a2-bb05-590a64a7431b" ShowCaption="False" Caption="" Direction="Horizontal" Index="1" RelativeSize="94.960212201591517" IsNewNode="True">
+            <LayoutItem Id="Notes" ViewItem="Notes" CaptionLocation="Top" Index="0" RelativeSize="28.058361391694724" IsNewNode="True" />
+            <LayoutGroup Id="Employees_Group" ShowCaption="True" Caption="Εργαζόμενοι" TextAlignMode="AlignWithChildren" Index="1" RelativeSize="71.941638608305269" IsNewNode="True">
+              <LayoutItem Id="Employees" ViewItem="Employees" Index="0" RelativeSize="100" IsNewNode="True" />
+            </LayoutGroup>
+          </LayoutGroup>
+          <LayoutGroup Id="Employees_Group" TextAlignMode="AlignWithChildren" Direction="Vertical" RelativeSize="44.297082228116707" Removed="True">
+            <LayoutItem Id="Employees" RelativeSize="100" />
+          </LayoutGroup>
+          <LayoutGroup Id="SizeableEditors" RelativeSize="44.297082228116707" Caption="Σημειώσεις" Direction="Horizontal" Removed="True">
+            <LayoutItem Id="Notes" CaptionLocation="Top" RelativeSize="100" Removed="True" />
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <ListView Id="DailyLog_Employees_ListView">
+      <Columns>
+        <ColumnInfo Id="Caption" Index="-1" />
+        <ColumnInfo Id="DateFired" Index="-1" />
+        <ColumnInfo Id="DateHired" Index="-1" />
+        <ColumnInfo Id="Nickname" Index="-1" />
+        <ColumnInfo Id="FullName" Width="217" />
+        <ColumnInfo Id="Manager" Width="149" />
+        <ColumnInfo Id="Department" Index="2" Width="120" />
+        <ColumnInfo Id="Color" Index="3" />
+      </Columns>
+    </ListView>
+    <ListView Id="DailyLog_ListView">
+      <Variants>
+        <Variant Id="DailyLogListToCalendar" Caption="Ημερολόγιο" ViewID="DailyLog_CalendarView" IsNewNode="True" />
+        <Variant Id="DailyLogListToList" Caption="Λίστα" ViewID="DailyLog_ListView" IsNewNode="True" />
+      </Variants>
+    </ListView>
+    <ListView Id="Employee_ListView">
+      <Filters>
+        <Filter Id="Όλα" Criteria="" Caption="Όλα" Index="0" IsNewNode="True" />
+        <Filter Id="Παραγωγή" Criteria="[Department.Title] = 'Παραγωγή'" Caption="Παραγωγή" IsNewNode="True" />
+        <Filter Id="Συγκομοιδή" Criteria="[Department.Title] = 'Συγκομοιδή'" Caption="Συγκομοιδή" IsNewNode="True" />
+      </Filters>
+    </ListView>
     <DetailView Id="Production_DetailView">
       <Items>
         <PropertyEditor Id="Truckster" Caption="Φορτηγό" />

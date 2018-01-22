@@ -8,6 +8,7 @@ Imports System.ComponentModel
 Imports System.Linq
 Imports DevExpress.Data.Filtering
 Imports DevExpress.ExpressApp.Model
+Imports System.Drawing
 
 <ImageName("BO_Contact")>
 <DefaultProperty("FullName")>

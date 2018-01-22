@@ -12,6 +12,7 @@ Partial Public Class ManitariaAlexandroupolisWindowsFormsApplication
     Inherits WinApplication
     Public Sub New()
         InitializeComponent()
+        UseOldTemplates = False
     End Sub
 
     Protected Overrides Sub CreateDefaultObjectSpaceProvider(ByVal args As CreateCustomObjectSpaceProviderEventArgs)

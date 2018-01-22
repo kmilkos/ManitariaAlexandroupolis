@@ -16,9 +16,8 @@ Imports DevExpress.Persistent.Validation
 Public Class Production ' Specify more UI options using a declarative approach (https://documentation.devexpress.com/#eXpressAppFramework/CustomDocument112701).
     Inherits BaseObject ' Inherit from a different class to provide a custom primary key, concurrency and deletion behavior, etc. (https://documentation.devexpress.com/eXpressAppFramework/CustomDocument113146.aspx).
 
-    Private _productionDate As DateTime
+
     Private _productionRoomNumber As Int32
-    <Size(4096)>
     Private _notes As String
     Private _height As Single
     Private _quality As String
@@ -29,15 +28,23 @@ Public Class Production ' Specify more UI options using a declarative approach (
     Public Overrides Sub AfterConstruction()
         MyBase.AfterConstruction()
         ' Place your initialization code here (https://documentation.devexpress.com/eXpressAppFramework/CustomDocument112834.aspx).
-        ProductionDate = Now
-
-        'CompostCode = String.Format("K00.{0}.00.{1}", GetISOWeekOfYear(Now.Date), Right(Now.Year, 2))
+        TheDate = Today
 
         CompostAction = 0
         CompostSource = 0
         CompostTarget = 0
 
     End Sub
+
+    Private _theDate As DateTime
+    Public Property TheDate As DateTime
+        Get
+            Return _theDate
+        End Get
+        Set(value As DateTime)
+            SetPropertyValue("TheDate", _theDate, value)
+        End Set
+    End Property
 
     Private _productionaction As ProductionActionEnum
     Public Property ProductionAction As ProductionActionEnum
@@ -55,17 +62,7 @@ Public Class Production ' Specify more UI options using a declarative approach (
             Return _farmAction
         End Get
         Set(ByVal Value As FarmAction)
-            SetPropertyValue(Nameof(FarmAction), _farmAction, Value)
-        End Set
-    End Property
-    
-
-    Public Property ProductionDate As DateTime
-        Get
-            Return _productionDate
-        End Get
-        Set(value As DateTime)
-            SetPropertyValue("ProductionDate", _productionDate, value)
+            SetPropertyValue(NameOf(FarmAction), _farmAction, Value)
         End Set
     End Property
 
@@ -80,7 +77,7 @@ Public Class Production ' Specify more UI options using a declarative approach (
         End Set
     End Property
 
-
+    <Size(SizeAttribute.Unlimited)>
     Public Property Notes As String
         Get
             Return _notes

@@ -4,6 +4,7 @@ Imports DevExpress.Persistent.Base
 Imports DevExpress.Persistent.Base.General
 Imports DevExpress.Persistent.BaseImpl
 Imports System.Drawing
+Imports DevExpress.ExpressApp.DC
 
 
 '<DefaultListViewOptions(MasterDetailMode.ListViewOnly, False, NewItemRowPosition.None)> _
@@ -11,23 +12,17 @@ Imports System.Drawing
 <DefaultProperty("FullName")>
 <Persistent("Employee")>
 <DefaultClassOptions()>
-<DevExpress.ExpressApp.DC.XafDisplayName("Προσωπικό")>
+<XafDisplayName("Προσωπικό")>
 Public Class Employee ' Specify more UI options using a declarative approach (https://documentation.devexpress.com/#eXpressAppFramework/CustomDocument112701).
     Inherits Person
-    Implements IResource
 
     Public Sub New(ByVal session As Session)
         MyBase.New(session)
     End Sub
     Public Overrides Sub AfterConstruction()
         MyBase.AfterConstruction()
-        ' Place your initialization code here (https://documentation.devexpress.com/eXpressAppFramework/CustomDocument112834.aspx).
-    End Sub
 
-    Private Sub Employee_Changed(sender As Object, e As ObjectChangeEventArgs) Handles Me.Changed
-
-        'SetPropertyValue("Caption", _caption, FullName)
-        '_caption = FullName
+        '_Color = Color.White.ToArgb()
 
     End Sub
 
@@ -35,6 +30,7 @@ Public Class Employee ' Specify more UI options using a declarative approach (ht
     Private _manager As Employee
     <DataSourceProperty("Department.Employees", DataSourcePropertyIsNullMode.SelectAll)>
     <DataSourceCriteria("Position.Title = 'Υπεύθυνος' AND Oid !='@This.Oid'")>
+    <XafDisplayName("Συντονιστής")>
     Public Property Manager As Employee
         Get
             Return _manager
@@ -45,6 +41,7 @@ Public Class Employee ' Specify more UI options using a declarative approach (ht
     End Property
 
     Private _datehired As DateTime
+    <XafDisplayName("Πρόσληψη")>
     Public Property DateHired As DateTime
         Set(value As DateTime)
             SetPropertyValue("DateHired", _datehired, value)
@@ -55,6 +52,7 @@ Public Class Employee ' Specify more UI options using a declarative approach (ht
     End Property
 
     Private _datefired As DateTime
+    <XafDisplayName("Απόλυση")>
     Public Property DateFired As DateTime
         Set(value As DateTime)
             SetPropertyValue("DateFired", _datefired, value)
@@ -65,6 +63,7 @@ Public Class Employee ' Specify more UI options using a declarative approach (ht
     End Property
 
     Private _nickname As String
+    <XafDisplayName("Ψευδόνυμο")>
     Public Property Nickname() As String
         Get
             Return _nickname
@@ -75,7 +74,8 @@ Public Class Employee ' Specify more UI options using a declarative approach (ht
     End Property
 
     Private _notes As String
-    <Size(4096)>
+    <Size(SizeAttribute.Unlimited)>
+    <XafDisplayName("Σημειώσεις")>
     Public Property Notes() As String
         Get
             Return _notes
@@ -87,9 +87,10 @@ Public Class Employee ' Specify more UI options using a declarative approach (ht
 #End Region
 
 #Region "Connections"
-    Private _department As ManitariaAlexandroupolis.Module.Department
+    Private _department As Department
     <DevExpress.Xpo.AssociationAttribute("Employees-Department")>
-    Public Property Department As ManitariaAlexandroupolis.Module.Department
+    <XafDisplayName("Τμήμα")>
+    Public Property Department As Department
         Get
             Return _department
         End Get
@@ -98,56 +99,29 @@ Public Class Employee ' Specify more UI options using a declarative approach (ht
         End Set
     End Property
 
-    Private _position As ManitariaAlexandroupolis.Module.Position
+    Private _position As Position
     <DevExpress.Xpo.AssociationAttribute("Employees-Positions")>
-    Public ReadOnly Property Positions As XPCollection(Of ManitariaAlexandroupolis.Module.Position)
+    <XafDisplayName("Θέσεις Εργασίας")>
+    Public ReadOnly Property Positions As XPCollection(Of Position)
         Get
-            Return GetCollection(Of ManitariaAlexandroupolis.Module.Position)("Positions")
+            Return GetCollection(Of Position)("Positions")
         End Get
     End Property
 
-    Private _skill As ManitariaAlexandroupolis.Module.Skill
+    Private _skill As Skill
     <DevExpress.Xpo.AssociationAttribute("Skills-Employee")>
-    Public ReadOnly Property Skills As XPCollection(Of ManitariaAlexandroupolis.Module.Skill)
+    <XafDisplayName("Ικανότητες")>
+    Public ReadOnly Property Skills As XPCollection(Of Skill)
         Get
-            Return GetCollection(Of ManitariaAlexandroupolis.Module.Skill)("Skills")
+            Return GetCollection(Of Skill)("Skills")
         End Get
     End Property
-
 
     <Association("Employee-DailyLogs")>
+    <XafDisplayName("Ημερήσιες Εργασίες")>
     Public ReadOnly Property DailyLogs() As XPCollection(Of DailyLog)
         Get
             Return GetCollection(Of DailyLog)(NameOf(DailyLogs))
-        End Get
-    End Property
-
-#End Region
-
-#Region "IResource Members"
-    <Persistent("Color")>
-    Private _Color As Integer
-    Private _Caption As String
-    Public Property Caption() As String Implements IResource.Caption
-        Get
-            Return _Caption
-        End Get
-        Set(ByVal value As String)
-            'Convert.ToString(EvaluateAlias("FullName"))
-            'SetPropertyValue("Caption", _Caption, value)
-            SetPropertyValue("Caption", _Caption, Convert.ToString(FullName))
-        End Set
-    End Property
-    <Browsable(False)>
-    Public ReadOnly Property Id() As Object Implements IResource.Id
-        Get
-            Return Oid
-        End Get
-    End Property
-    <Browsable(False)>
-    Public ReadOnly Property OleColor() As Integer Implements IResource.OleColor
-        Get
-            Return ColorTranslator.ToOle(Color.FromArgb(_Color))
         End Get
     End Property
 #End Region

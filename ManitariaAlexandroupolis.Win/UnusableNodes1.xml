@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Application>
+  <BOModel Id="BOModel">
+    <Class Name="ManitariaAlexandroupolis.Module.Activity" ImageName="BO_Scheduler" DefaultListViewShowFindPanel="True" />
+  </BOModel>
+  <Views Id="Views">
+    <DetailView Id="Activity_DetailView" DefaultFocusedItem="Subject" />
+    <ListView Id="Activity_ListView" SchedulerViewType="Month" AllowEdit="True" NewItemRowPosition="None" ShowAutoFilterRow="True" ResourceClass="ManitariaAlexandroupolis.Module.Employee" PreviewColumnName="Description">
+      <Variants Id="Variants">
+        <Variant Id="@bf129c75-d9f3-449d-a469-cf3c26c05157" ViewID="Activity_ListView_Grid" />
+      </Variants>
+    </ListView>
+    <ListView Id="Activity_ListView_Grid" ClassName="ManitariaAlexandroupolis.Module.Activity" ResourceClass="ManitariaAlexandroupolis.Module.Employee" SchedulerViewType="Month" AllowEdit="True" PreviewColumnName="Description" ShowAutoFilterRow="True" EditorTypeName="DevExpress.ExpressApp.Win.Editors.GridListEditor" Caption="Καθημερινότητα Λίστα">
+      <Columns Id="Columns">
+        <ColumnInfo Id="Description" PropertyName="Description" Width="70" Index="-1" />
+        <ColumnInfo Id="Oid" PropertyName="Oid" Width="70" Index="-1" />
+        <ColumnInfo Id="AllDay" PropertyName="AllDay" Width="50" Index="0" />
+        <ColumnInfo Id="Label" PropertyName="Label" Width="50" Index="1" />
+        <ColumnInfo Id="Location" PropertyName="Location" Width="70" Index="2" />
+        <ColumnInfo Id="StartOn" PropertyName="StartOn" Width="70" Index="3" />
+        <ColumnInfo Id="EndOn" PropertyName="EndOn" Width="70" Index="4" />
+        <ColumnInfo Id="Status" PropertyName="Status" Width="50" Index="5" />
+        <ColumnInfo Id="Subject" PropertyName="Subject" Width="70" Index="6" />
+        <ColumnInfo Id="RecurrenceInfoXml" PropertyName="RecurrenceInfoXml" Width="70" Index="7" />
+      </Columns>
+    </ListView>
+  </Views>
+</Application>

@@ -144,6 +144,17 @@ Public Class TaskV3
             Return GetPropertyValue("DateCompleted")
         End Get
     End Property
+
+    Private _taskStatus As TaskStatusEnum
+    Property TaskStatus As TaskStatusEnum
+        Get
+            Return _taskStatus
+        End Get
+        Set(ByVal Value As TaskStatusEnum)
+            SetPropertyValue(NameOf(TaskStatus), _taskStatus, Value)
+        End Set
+    End Property
+
 #End Region
 
 #Region "Actions"
@@ -158,7 +169,7 @@ Public Class TaskV3
 
     <Action(Caption:="Mark Completed", ImageName:="State_Task_Completed")>
     Public Sub MarkCompleted()
-        SetPropertyValue("TaskStatus", TaskStatus.Completed)
+        SetPropertyValue("TaskStatus", TaskStatusEnum.Completed)
     End Sub
 #End Region
 
@@ -193,5 +204,13 @@ Public Class TaskV3
         Normal = 1
         <ImageName("State_Priority_High")>
         High = 2
+    End Enum
+
+    Public Enum TaskStatusEnum
+        NotStarted = 0
+        InProgress = 1
+        Deffered = 2
+        WaitingSomeoneElse = 3
+        Completed = 4
     End Enum
 End Class
