@@ -103,6 +103,8 @@ Public Class Mushroom ' Specify more UI options using a declarative approach (ht
         Χύμα
         Συσκευασία500γρ
         Συσκευασία250γρ
+        Συσκευασία400γρ
+        Συσκευασία200γρ
     End Enum
 
 End Class

@@ -50,14 +50,14 @@ Public Class OrderDetail ' Specify more UI options using a declarative approach 
             SetPropertyValue(Nameof(Mushroom), _mushroom, Value)
         End Set
     End Property
-    
 
-    Private _quantity As Integer
-    Property Quantity As Integer
+
+    Private _quantity As Single
+    Property Quantity As Single
         Get
             Return _quantity
         End Get
-        Set(ByVal Value As Integer)
+        Set(ByVal Value As Single)
             SetPropertyValue(NameOf(Quantity), _quantity, Value)
         End Set
     End Property
