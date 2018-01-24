@@ -2,6 +2,7 @@ Imports Microsoft.VisualBasic
 Imports System
 Imports System.ComponentModel
 Imports DevExpress.ExpressApp
+Imports DevExpress.ExpressApp.ReportsV2.Win
 Imports DevExpress.ExpressApp.Win
 Imports System.Collections.Generic
 Imports DevExpress.ExpressApp.Updating
@@ -12,6 +13,7 @@ Partial Public Class ManitariaAlexandroupolisWindowsFormsApplication
     Inherits WinApplication
     Public Sub New()
         InitializeComponent()
+        WinReportServiceController.UseNewWizard = True
         UseOldTemplates = False
     End Sub
 
